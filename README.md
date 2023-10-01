@@ -1,5 +1,3 @@
-# arch install
-
 ## Table of Contents
 - [Networks](#networks)
 - [Partitions](#partitioning)
