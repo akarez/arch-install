@@ -1,3 +1,5 @@
+# arch-install
+
 ## Table of Contents
 - [Networks](#networks)
 - [Partitions](#partitioning)
@@ -502,7 +504,7 @@ Install display, audio, and wireless packages:
 Install window management and system utilities:
 
 ```
-~$ sudo pacman -S bspwm sxhkd alacritty ranger feh rofi picom firefox zip unzip brightnessctl wget upower cron neovim zathura zathura-pdf-mupdf ttf-iosevka-nerd  nmap xsel  powertop htop lshw xed
+~$ sudo pacman -S bspwm sxhkd alacritty ranger feh rofi picom firefox zip unzip brightnessctl wget upower cron neovim zathura zathura-pdf-mupdf nerd-fonts nmap xsel  powertop htop lshw xed
 
 ~$ yay -S polybar ueberzug coreshot xidlehook neofetch apple-fonts ttf-ms-win10-auto gtk-theme-numix-solarized redshift
 ```
@@ -511,26 +513,23 @@ Install window management and system utilities:
 
 The following are packages that I use but are not necessary for a working system. I put them here anyway so I can copy paste the command when needed:
 
-#### Virtualization
 
 ```
-~$ sudo pacman -S qemu libvirt iptables-nft dnsmasq virt-manager virt-viewer vde2 bridge-utils openbsd-netcat
+~$ sudo pacman -S virtualbox virtualbox-host-modules-arch virtualbox-ext-oracle obs-studio obsidian zsh zsh-completions nodejs rustup python python-pip arduino-cli p7zip 
 ```
 
-#### Programming Utilities
+```
+~$ yay -S zotero-bin onlyoffice teams-for-linux
 
 ```
-~$ sudo pacman -S nodejs npm rust rust-src arduino-cli 
 
 ```
-#### PCB Design Utilities
+~$ oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
-~$ sudo pacman -S kicad
 
-```
 ## Load Configuration
 
-The configuration files are managed with [GNU Stow](https://www.gnu.org/software/stow/). To setup, first clone [this](https://github.com/akarez/dorfiles) repo. Then, navigate into the cloned directory and enter the following command:
+The configuration files are managed with [GNU Stow](https://www.gnu.org/software/stow/). To setup, first clone [this](https://github.com/akarez/dorfiles) repo. Then navigate into the cloned directory and enter the following command:
 
 ```
 ~$ stow alacritty bash bspwm neofetch nvim polybar ranger rofi sxhkd wallpapers x zathura
