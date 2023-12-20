@@ -520,7 +520,6 @@ The following are packages that I use but are not necessary for a working system
 
 ```
 ~$ yay -S zotero-bin onlyoffice teams-for-linux
-
 ```
 
 ```
@@ -529,7 +528,7 @@ The following are packages that I use but are not necessary for a working system
 
 ## Load Configuration
 
-The configuration files are managed with [GNU Stow](https://www.gnu.org/software/stow/). To setup, first clone [this](https://github.com/akarez/dorfiles) repo. Then navigate into the cloned directory and enter the following command:
+The configuration files are managed with [GNU Stow](https://www.gnu.org/software/stow/). To setup, first clone [this](https://github.com/akarez/.dotfiles) repo. Then navigate into the cloned directory and enter the following command:
 
 ```
 ~$ stow alacritty bash bspwm neofetch nvim polybar ranger rofi sxhkd wallpapers x zathura
