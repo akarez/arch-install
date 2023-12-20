@@ -1,4 +1,5 @@
 # arch-install
+![](https://github.com/akarez/arch-install/blob/main/assets/screenshot.png)
 
 ## Table of Contents
 - [Networks](#networks)
