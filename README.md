@@ -2,30 +2,30 @@
 
 ## Table of Contents
 
-- [[#Networks|Networks]]
-- [[#Partitioning|Partitioning]]
-	- [[#Partitioning#Create Partitions|Create Partitions]]
-		- [[#Create Partitions#Boot Partition|Boot Partition]]
-		- [[#Create Partitions#Swap Partition|Swap Partition]]
-		- [[#Create Partitions#Root Partition|Root Partition]]
-		- [[#Create Partitions#Home Partition|Home Partition]]
-		- [[#Create Partitions#Save changes and exit:|Save changes and exit:]]
-	- [[#Partitioning#Format Partitions|Format Partitions]]
-	- [[#Partitioning#Mount Partitions|Mount Partitions]]
-- [[#Base System|Base System]]
-	- [[#Base System#Install Base Packages|Install Base Packages]]
-	- [[#Base System#Enter Chroot|Enter Chroot]]
-	- [[#Base System#Configure Time Zones|Configure Time Zones]]
-	- [[#Base System#Configure Host Info|Configure Host Info]]
-- [[#Bootloader|Bootloader]]
-- [[#Finishing Up|Finishing Up]]
-	- [[#Finishing Up#Users and Passwords|Users and Passwords]]
-	- [[#Finishing Up#Networks|Networks]]
-	- [[#Finishing Up#Exit Installation|Exit Installation]]
-- [[#Install Desktop Environment|Install Desktop Environment]]
-	- [[#Install Desktop Environment#Essential Packages|Essential Packages]]
-	- [[#Install Desktop Environment#Optional Packages|Optional Packages]]
-- [[#Load Configuration|Load Configuration]]
+- [Networks](#networks)
+- [Partitioning](#partitioning)
+    - [Create Partitions](#create-partitions)
+        - [Boot Partition](#boot-partition)
+        - [Swap Partition](#swap-partition)
+        - [Root Partition](#root-partition)
+        - [Home Partition](#home-partition)
+        - [Save changes and exit](#save-changes-and-exit)
+    - [Format Partitions](#format-partitions)
+    - [Mount Partitions](#mount-partitions)
+- [Base System](#base-system)
+    - [Install Base Packages](#install-base-packages)
+    - [Enter Chroot](#enter-chroot)
+    - [Configure Time Zones](#configure-time-zones)
+    - [Configure Host Info](#configure-host-info)
+- [Bootloader](#bootloader)
+- [Finishing Up](#finishing-up)
+    - [Users and Passwords](#users-and-passwords)
+    - [Networks](#networks)
+    - [Exit Installation](#exit-installation)
+- [Install Desktop Environment](#install-desktop-environment)
+    - [Essential Packages](#essential-packages)
+    - [Optional Packages](#optional-packages)
+- [Load Configuration](#load-configuration)
 
 ## Networks
 Use the iwd utility to connect to WiFi:
