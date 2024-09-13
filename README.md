@@ -1,5 +1,5 @@
 <div align="center" >
-    <img src="https://github.com/akarez/arch-install/blob/main/assets/arch-logo" alt="arch linux logo">
+    <img src="https://github.com/akarez/arch-install/blob/main/assets/arch-logo.png" alt="arch linux logo" width="200" height="200">
     <h1 align="center">Arch Linux Installation Guide</h1>
 </div>
 
