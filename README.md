@@ -1,26 +1,31 @@
 # arch-install
-![](https://github.com/akarez/arch-install/blob/main/assets/screenshot.png)
 
 ## Table of Contents
-- [Networks](#networks)
-- [Partitions](#partitioning)
-  - [Create](#create-partitions)
-  - [Format](format-partitions)
-  - [Mount](mount-partitions)
-- [Base System](base-system)
-  - [Install Base Packages](install-base-packages)
-  - [Change Working Root](enter-chroot)
-  - [Configure Time Zones](configure-time-zones)
-  - [Configure Host Information](configure-host-info)
-- [Bootloader](bootloader)
-- [Finishing Up](finishing-up)
-  - [Users and Passwords](users-and-passwords)
-  - [Network Manager](network-manager)
-  - [Exit Installation](exit-installation)
-- [Install Desktop Environment](install-desktop-environment)
-  - [Essential Packages](essential-packages)
-  - [Optional Packages](optional-packages)
-- [Load Configuration](load-configuration)
+
+- [[#Networks|Networks]]
+- [[#Partitioning|Partitioning]]
+	- [[#Partitioning#Create Partitions|Create Partitions]]
+		- [[#Create Partitions#Boot Partition|Boot Partition]]
+		- [[#Create Partitions#Swap Partition|Swap Partition]]
+		- [[#Create Partitions#Root Partition|Root Partition]]
+		- [[#Create Partitions#Home Partition|Home Partition]]
+		- [[#Create Partitions#Save changes and exit:|Save changes and exit:]]
+	- [[#Partitioning#Format Partitions|Format Partitions]]
+	- [[#Partitioning#Mount Partitions|Mount Partitions]]
+- [[#Base System|Base System]]
+	- [[#Base System#Install Base Packages|Install Base Packages]]
+	- [[#Base System#Enter Chroot|Enter Chroot]]
+	- [[#Base System#Configure Time Zones|Configure Time Zones]]
+	- [[#Base System#Configure Host Info|Configure Host Info]]
+- [[#Bootloader|Bootloader]]
+- [[#Finishing Up|Finishing Up]]
+	- [[#Finishing Up#Users and Passwords|Users and Passwords]]
+	- [[#Finishing Up#Networks|Networks]]
+	- [[#Finishing Up#Exit Installation|Exit Installation]]
+- [[#Install Desktop Environment|Install Desktop Environment]]
+	- [[#Install Desktop Environment#Essential Packages|Essential Packages]]
+	- [[#Install Desktop Environment#Optional Packages|Optional Packages]]
+- [[#Load Configuration|Load Configuration]]
 
 ## Networks
 Use the iwd utility to connect to WiFi:
@@ -287,10 +292,10 @@ Check that partitions are mounted correctly:
 ## Base System
 ### Install Base Packages
 
->Note: In this step we will also install a text editor. I chose nano to keep things simple. You may install whichever you are most comfortable with.
+>Note: In this step we will also install a text editor. I use neovim. You may install whichever you are most comfortable with.
 
 ```
-~# pacstrap /mnt base linux linux-firmware nano
+~# pacstrap /mnt base linux linux-firmware neovim
 ```
 
 If you run into an issue with the keyring run the following commands:
@@ -333,7 +338,7 @@ Select locale:
 >Note: With this command (and any time we use nano) you will edit a configuration file. Look for your locale and uncomment it by removing the # in front of it. Once done, save and exit.
 
 ```
-~# nano /etc/locale.gen
+~# nvim /etc/locale.gen
 ...
 #en_SG ISO-8859-1
 en_US.UTF-8 UTF-8
@@ -352,7 +357,7 @@ Set system language:
 >Note: The file will be empty. Enter LANG= followed by your locale. Save and exit.
 
 ```
-~# nano /etc/locale.conf
+~# nvim /etc/locale.conf
 
 LANG=en_US.UTF-8
 ```
@@ -363,7 +368,7 @@ Set host name:
 >Note: The file will be empty. Enter the name you want for your machine, mine is "machine". Save and exit.
 
 ```
-~# nano /etc/hostname
+~# nvim /etc/hostname
 
 machine
 ```
@@ -373,7 +378,7 @@ Set network host:
 >Note: The file will have two commented lines. Ignore those and enter the following under them. Replace machine with your host name. Save and exit.
 
 ```
-~# nano /etc/hosts
+~# nvim /etc/hosts
 
 ...
 127.0.0.1  localhost 
@@ -409,7 +414,7 @@ Generate GRUB configuration file:
 Install some extra packages:
 
 ```
-~# pacman -S linux-headers base-devel xdg-utils xdg-user-dirs networkmanager git stow
+~# pacman -S linux-headers base-devel iwd git stow
 ```
 
 ### Users and Passwords
@@ -439,23 +444,19 @@ Give user root privileges:
 >Note: Uncomment the line shown below. This will give any user in the wheel group permisison to execute any command. Save and exit.
 
 ```
-~# EDITOR=nano visudo
+~# EDITOR=nvim visudo
 
 ...
 %wheel ALL=(ALL) ALL
 ...
 ```
 
-### Network Manager
+### Networks
 
 Enable network daemon:
 
 ```
-~# systemctl enable NetworkManager
-```
-
-```
-~# systemctl start NetworkManager
+~# systemctl enable iwd
 ```
 
 ### Exit Installation
@@ -480,7 +481,7 @@ Reboot:
 
 ## Install Desktop Environment
 
-From here on you can install the desktop environment. Below are the steps for the system I currently use. See more info [here](https://github.com/akarez/dorfiles).
+From here on you can install the desktop environment. Below are the steps for the system I currently use. See more info [here](https://github.com/akarez/.dotfiles).
 
 ### Essential Packages
 
@@ -494,43 +495,55 @@ Install the YAY AUR helper. This will allow you to install packages from the Arc
 ~$ makepkg -si
 ```
 
-Install display, audio, and wireless packages:
+Install audio, and wireless packages:
 
 ```
-~$ sudo pacman -S xf86-video-intel xf86-video-amdgpu xorg xorg-xinit xorg-xev xorg-xbacklight arandr alsa-utils pulseaudio bluez bluez-utils
-
-~$ yay -S pulseaudio-ctl pavucontrol 
+~$ sudo pacman -S pipewire wireplumber pipewire-audio pipewire-pulse bluez bluez-utils
 ```
 
 Install window management and system utilities:
 
 ```
-~$ sudo pacman -S bspwm sxhkd alacritty ranger feh rofi picom firefox zip unzip brightnessctl wget upower cron neovim zathura zathura-pdf-mupdf nerd-fonts nmap xsel  powertop htop lshw xed
+~$ sudo pacman -S hyprland hyprpaper hypridle hyprlock xdg-desktop-portal-hyprland kitty dunst polkit-kde-agent qt5-wayland qt6-wayland waybar ranger firefox zip unzip p7zip brightnessctl wget upower cron neovim nerd-fonts nmap powertop htop lshw xed openssh
 
-~$ yay -S polybar ueberzug coreshot xidlehook neofetch apple-fonts ttf-ms-win10-auto gtk-theme-numix-solarized redshift
+~$ yay -S hyprshot hyprpicker neofetch apple-fonts ttf-ms-win10-auto rofi-wayland 
 ```
 
+Start ssh, bluetooth, and audio daemon:
+
+```
+~$ sudo systemctl enable sshd && sudo systemctl start sshd
+```
+
+```
+~$ sudo systemctl enable bluetooth && sudo systemctl start bluetooth
+```
+
+```
+~$ sudo systemctl --user --now enable pipewire pipewire-pulse wireplumber
+```
 ### Optional Packages
 
 The following are packages that I use but are not necessary for a working system. I put them here anyway so I can copy paste the command when needed:
 
-
 ```
-~$ sudo pacman -S virtualbox virtualbox-host-modules-arch virtualbox-ext-oracle obs-studio obsidian zsh zsh-completions nodejs rustup python python-pip arduino-cli p7zip 
-```
-
-```
-~$ yay -S zotero-bin onlyoffice teams-for-linux
+~$ sudo pacman -S zsh zsh-completions zsh-autosuggestions obs-studio obsidian  nodejs rustup python python-pip arduino-cli
 ```
 
 ```
-~$ oh-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+~$ yay -S zotero-bin onlyoffice teams-for-linux onedrive-abraunegg
+```
+
+Change shell to zsh:
+
+```
+~$ chsh -s $(which zsh)
 ```
 
 ## Load Configuration
 
-The configuration files are managed with [GNU Stow](https://www.gnu.org/software/stow/). To setup, first clone [this](https://github.com/akarez/.dotfiles) repo. Then navigate into the cloned directory and enter the following command:
+The configuration files are managed with [GNU Stow](https://www.gnu.org/software/stow/). If you'd like to use my environment you can clone [this repo](https://github.com/akarez/.dotfiles) and enter the following command:
 
 ```
-~$ stow alacritty bash bspwm neofetch nvim polybar ranger rofi sxhkd wallpapers x zathura
+~$ cd .dotfiles && stow neofetch nvim wallpapers  
 ```
