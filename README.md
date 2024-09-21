@@ -530,11 +530,11 @@ Start ssh, bluetooth, and audio daemon:
 The following are packages that I use but are not necessary for a working system. I put them here anyway so I can copy paste the command when needed:
 
 ```
-~$ sudo pacman -S zsh zsh-completions zsh-autosuggestions obs-studio obsidian  nodejs rustup python python-pip arduino-cli
+~$ sudo pacman -S zsh zsh-completions zsh-autosuggestions obs-studio obsidian nodejs rustup python python-pip arduino-cli qemu-full
 ```
 
 ```
-~$ yay -S zotero-bin onlyoffice teams-for-linux onedrive-abraunegg
+~$ yay -S zotero-bin onlyoffice teams-for-linux onedrive-abraunegg riscv-gnu-toolchain-bin
 ```
 
 Change shell to zsh:
