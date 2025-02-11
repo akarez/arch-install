@@ -523,18 +523,18 @@ Start ssh, bluetooth, and audio daemon:
 ```
 
 ```
-~$ sudo systemctl --user --now enable pipewire pipewire-pulse wireplumber
+~$ systemctl --user --now enable pipewire pipewire-pulse wireplumber
 ```
 ### Optional Packages
 
 The following are packages that I use but are not necessary for a working system. I put them here anyway so I can copy paste the command when needed:
 
 ```
-~$ sudo pacman -S zsh zsh-completions zsh-autosuggestions obs-studio obsidian nodejs rustup python python-pip arduino-cli qemu-full
+~$ sudo pacman -S zsh zsh-completions zsh-autosuggestions obs-studio obsidian nodejs rustup python python-pip arduino-cli qemu-full discord
 ```
 
 ```
-~$ yay -S zotero-bin onlyoffice teams-for-linux onedrive-abraunegg riscv-gnu-toolchain-bin
+~$ yay -S zotero-bin onlyoffice teams-for-linux onedrive-abraunegg riscv-gnu-toolchain-bin spotify 
 ```
 
 Change shell to zsh:
