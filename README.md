@@ -507,7 +507,7 @@ Install audio, and wireless packages:
 Install window management and system utilities:
 
 ```
-~$ sudo pacman -S hyprland hyprpaper hypridle hyprlock xdg-desktop-portal-hyprland kitty dunst polkit-kde-agent qt5-wayland qt6-wayland waybar ranger firefox zip unzip p7zip brightnessctl wget upower cron neovim nerd-fonts nmap powertop htop lshw xed openssh
+~$ sudo pacman -S hyprland hyprpaper hypridle hyprlock xdg-desktop-portal-hyprland kitty dunst polkit-kde-agent qt5-wayland qt6-wayland waybar ranger firefox zip unzip p7zip brightnessctl wget upower cron neovim nerd-fonts nmap powertop htop lshw xed openssh dhcpcd
 
 ~$ yay -S hyprshot hyprpicker neofetch apple-fonts ttf-ms-win10-auto rofi-wayland 
 ```
@@ -521,7 +521,9 @@ Start ssh, bluetooth, and audio daemon:
 ```
 ~$ sudo systemctl enable bluetooth && sudo systemctl start bluetooth
 ```
-
+```
+~$ sudo systemctl enable dhcpcd && sudo systemctl start dhcpcd
+```
 ```
 ~$ systemctl --user --now enable pipewire pipewire-pulse wireplumber
 ```
